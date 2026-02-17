@@ -7,3 +7,6 @@ obj/
 MovieCollection.sqlite
 appsettings.Development.json
 appsettings.json
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite.bak
