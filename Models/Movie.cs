@@ -23,12 +23,9 @@ public class Movie
     [Range(1888, 9999, ErrorMessage = "Year must be 1888 or later")]
     public int Year { get; set; }
 
-    [Required]
-    public string Director { get; set; } = string.Empty;
-
-    [Required]
-    public string Rating { get; set; } = string.Empty;
-
+    public string? Director { get; set; }
+    public string? Rating { get; set; }
+    
     // Make Edited non-nullable bool so the app always knows true/false
     [Required]
     public bool Edited { get; set; }
