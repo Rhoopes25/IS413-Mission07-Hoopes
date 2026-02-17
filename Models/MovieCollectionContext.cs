@@ -9,5 +9,8 @@ public class MovieCollectionContext : DbContext
     {
     }
 
-    public DbSet<Movie> Movies { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Movie> Movies { get; set; }   // should already be here
+
+    
 }
