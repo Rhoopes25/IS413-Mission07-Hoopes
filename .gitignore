@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+MovieCollection.sqlite
+appsettings.Development.json
+appsettings.json
