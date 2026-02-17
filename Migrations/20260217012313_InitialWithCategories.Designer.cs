@@ -10,8 +10,8 @@ using Mission06_Hoopes.Models;
 namespace Mission06_Hoopes.Migrations
 {
     [DbContext(typeof(MovieCollectionContext))]
-    [Migration("20260210224908_Initial")]
-    partial class Initial
+    [Migration("20260217012313_InitialWithCategories")]
+    partial class InitialWithCategories
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,21 +19,38 @@ namespace Mission06_Hoopes.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
 
+            modelBuilder.Entity("Mission06_Hoopes.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("Mission06_Hoopes.Models.Movie", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CopiedToPlex")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool?>("Edited")
+                    b.Property<bool>("Edited")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("LentTo")
@@ -56,7 +73,25 @@ namespace Mission06_Hoopes.Migrations
 
                     b.HasKey("MovieId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("Mission06_Hoopes.Models.Movie", b =>
+                {
+                    b.HasOne("Mission06_Hoopes.Models.Category", "Category")
+                        .WithMany("Movies")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Mission06_Hoopes.Models.Category", b =>
+                {
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }
