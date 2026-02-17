@@ -9,6 +9,8 @@ public class Movie
 
     // Instead of a free-text Category string, we store the numeric foreign key:
     [Required]
+    [Range(1, int.MaxValue, ErrorMessage = "Please pick a category.")]
+
     public int CategoryId { get; set; }
 
     // Navigation property so EF can give us the Category object if we need it:

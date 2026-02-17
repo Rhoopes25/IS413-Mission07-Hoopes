@@ -1,0 +1,21 @@
+@model Mission06_Hoopes.Models.Movie
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<h1 class="display-4">Delete Movie</h1>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title (@Model.Year)</h5>
+        <p class="card-text">Category: @Model.Category?.CategoryName</p>
+        <p class="card-text">Director: @Model.Director</p>
+        <p class="card-text">Notes: @Model.Notes</p>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="MovieId" />
+    <button type="submit" class="btn btn-danger">Yes, delete this movie</button>
+    <a asp-action="Collection" class="btn btn-secondary">Cancel</a>
+</form>
