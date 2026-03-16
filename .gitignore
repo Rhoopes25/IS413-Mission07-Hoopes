@@ -11,6 +11,5 @@ appsettings.json
 *.sqlite-shm
 *.sqlite.bak
 # Local DB & appsettings
-JoelHiltonMovieCollection.sqlite
 MovieCollection_backup.sqlite
 
